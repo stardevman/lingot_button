@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 /// [duration] in milliseconds
 ///
 class AnimatedButton extends StatefulWidget {
-  final VoidCallback? onPressed;
+  final VoidCallback onPressed;
   final Widget child;
   final bool enabled;
   final Color color;
@@ -105,7 +105,7 @@ class _AnimatedButtonState extends State<AnimatedButton> {
     setState(() {
       _position = 4;
     });
-    widget.onPressed!();
+    widget.onPressed();
   }
 }
 
