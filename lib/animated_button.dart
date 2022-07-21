@@ -48,12 +48,11 @@ class _AnimatedButtonState extends State<AnimatedButton> {
           alignment: Alignment.center,
           children: [
             Positioned(
-              //left: 0,
-              //right: 0,
+              left: 0,
+              right: 0,
               bottom: 0,
               child: Container(
                 height: _height,
-                width: 64,
                 decoration: BoxDecoration(
                   shape: widget.shape,
                   color: widget.enabled
@@ -68,12 +67,11 @@ class _AnimatedButtonState extends State<AnimatedButton> {
             AnimatedPositioned(
               curve: _curve,
               duration: Duration(milliseconds: widget.duration),
-              //left: 0,
-              //right: 0,
+              left: 0,
+              right: 0,
               bottom: _position,
               child: Container(
                 height: _height,
-                width: 64,
                 decoration: BoxDecoration(
                   shape: widget.shape,
                   color: widget.enabled ? widget.color : Colors.grey,

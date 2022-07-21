@@ -18,24 +18,19 @@ class Demo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          AnimatedButton(
+      body: Center(
+        child: SizedBox(
+          width: 200,
+          child: AnimatedButton(
             onPressed: () {},
             enabled: true,
             color: Colors.blue,
             shadowDegree: ShadowDegree.light,
             child: Text(
-              'dsfsdf',
+              'Lingot Button',
             ),
           ),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text(''),
-          ),
-        ],
+        ),
       ),
     );
   }
