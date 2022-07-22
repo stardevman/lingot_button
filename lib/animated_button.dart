@@ -42,52 +42,65 @@ class _AnimatedButtonState extends State<AnimatedButton> {
     final double _height = widget.height - _shadowHeight;
 
     return GestureDetector(
-      child: Container(
-        height: _height + _shadowHeight,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: Container(
-                height: _height,
-                decoration: BoxDecoration(
-                  shape: widget.shape,
-                  color: widget.enabled
-                      ? darken(widget.color, widget.shadowDegree)
-                      : darken(Colors.grey, widget.shadowDegree),
-                  borderRadius: widget.shape != BoxShape.circle
-                      ? BorderRadius.all(Radius.circular(16))
-                      : null,
-                ),
-              ),
-            ),
-            AnimatedPositioned(
-              curve: _curve,
-              duration: Duration(milliseconds: widget.duration),
-              left: 0,
-              right: 0,
-              bottom: _position,
-              child: Container(
-                height: _height,
-                decoration: BoxDecoration(
-                  shape: widget.shape,
-                  color: widget.enabled ? widget.color : Colors.grey,
-                  borderRadius: widget.shape != BoxShape.circle
-                      ? BorderRadius.all(Radius.circular(16))
-                      : null,
-                ),
-                child: Center(child: widget.child),
-              ),
-            ),
-          ],
-        ),
-      ),
       onTapDown: widget.enabled ? _pressed : null,
       onTapUp: widget.enabled ? _unPressedOnTapUp : null,
       onTapCancel: widget.enabled ? _unPressed : null,
+      child: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          return Container(
+            height: _height + _shadowHeight,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Positioned(
+                  bottom: 0,
+                  child: Container(
+                    height: _height,
+                    constraints: BoxConstraints(
+                      minWidth: constraints.minWidth,
+                    ),
+                    decoration: BoxDecoration(
+                      shape: widget.shape,
+                      color: widget.enabled
+                          ? darken(widget.color, widget.shadowDegree)
+                          : darken(Colors.grey, widget.shadowDegree),
+                      borderRadius: widget.shape != BoxShape.circle
+                          ? BorderRadius.all(Radius.circular(16))
+                          : null,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Center(child: widget.child),
+                    ),
+                  ),
+                ),
+                AnimatedPositioned(
+                  bottom: _position,
+                  curve: _curve,
+                  duration: Duration(milliseconds: widget.duration),
+                  child: Container(
+                    height: _height,
+                    constraints: BoxConstraints(
+                      minWidth: constraints.minWidth,
+                    ),
+                    decoration: BoxDecoration(
+                      shape: widget.shape,
+                      color: widget.enabled ? widget.color : Colors.grey,
+                      borderRadius: widget.shape != BoxShape.circle
+                          ? BorderRadius.all(Radius.circular(16))
+                          : null,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Center(child: widget.child),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 

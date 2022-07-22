@@ -19,16 +19,14 @@ class Demo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: SizedBox(
-          width: 200,
-          child: AnimatedButton(
-            onPressed: () {},
-            enabled: true,
-            color: Colors.blue,
-            shadowDegree: ShadowDegree.light,
-            child: Text(
-              'Lingot Button',
-            ),
+        child: AnimatedButton(
+          onPressed: () {},
+          enabled: true,
+          color: Colors.blue,
+          shadowDegree: ShadowDegree.light,
+          child: Text(
+            'Lingot Button',
+            textAlign: TextAlign.center,
           ),
         ),
       ),
